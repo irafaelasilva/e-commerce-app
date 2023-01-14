@@ -1,8 +1,7 @@
-const { products } = require("../db");
-
 exports.Category = {
-  products: (parent, _args, _contex) => {
+  products: (parent, _args, contex) => {
     const categoryId = parent.id;
+    const { products } = contex;
     return products.filter((product) => product.categoryId === categoryId);
   },
 };
