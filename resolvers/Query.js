@@ -1,7 +1,15 @@
 exports.Query = {
-  products: (_parent, _args, context) => {
+  products: (_parent, args, context) => {
     const { products } = context;
-    return products;
+    const { filter } = args;
+    let filteredProducts = products;
+
+    if (filter !== undefined) {
+      if (filter.onSale === true) {
+        filteredProducts = filteredProducts.filter((product) => product.onSale);
+      }
+    }
+    return filteredProducts;
   },
   product: (_parent, args, context) => {
     const { id } = args;
